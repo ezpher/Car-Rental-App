@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRentalDesktopApp.CarRentalUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace CarRentalDesktopApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            Application.Run(new Login());
         }
     }
 }

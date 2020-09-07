@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CarRentalDesktopApp</RootNamespace>
     <AssemblyName>CarRentalDesktopApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +44,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +82,9 @@
     <Compile Include="CarRentalLibrary\CarRentalRecord.cs">
       <DependentUpon>CarRentalModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="CarRentalLibrary\User.cs">
+      <DependentUpon>CarRentalModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="CarRentalLibrary\ViewModels\CarViewModel.cs" />
     <Compile Include="CarRentalLibrary\ViewModels\CustomerViewModel.cs" />
     <Compile Include="CarRentalUI\CheckinRental.cs">
@@ -82,6 +92,12 @@
     </Compile>
     <Compile Include="CarRentalUI\CheckinRental.Designer.cs">
       <DependentUpon>CheckinRental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalUI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarRentalUI\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="CarRentalUI\MainWindow.cs">
       <SubType>Form</SubType>
@@ -104,6 +120,9 @@
     <EmbeddedResource Include="CarRentalUI\CheckoutRental.resx">
       <DependentUpon>CheckoutRental.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CarRentalUI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CarRentalUI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +134,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="CarRentalLibrary\CarRentalModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -123,7 +143,9 @@
     <None Include="CarRentalLibrary\CarRentalModels.edmx.diagram">
       <DependentUpon>CarRentalModels.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

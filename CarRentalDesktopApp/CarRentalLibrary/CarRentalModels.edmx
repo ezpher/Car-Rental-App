@@ -29,6 +29,14 @@
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CarID" Type="int" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <Association Name="FK_CarRentalRecord_CarRecord">
           <End Role="CarRecord" Type="Self.CarRecord" Multiplicity="0..1" />
           <End Role="CarRentalRecord" Type="Self.CarRentalRecord" Multiplicity="*" />
@@ -44,6 +52,7 @@
         <EntityContainer Name="CarRentalAppModelStoreContainer">
           <EntitySet Name="CarRecord" EntityType="Self.CarRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarRentalRecord" EntityType="Self.CarRentalRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CarRentalRecord_CarRecord" Association="Self.FK_CarRentalRecord_CarRecord">
             <End Role="CarRecord" EntitySet="CarRecord" />
             <End Role="CarRentalRecord" EntitySet="CarRentalRecord" />
@@ -56,6 +65,7 @@
         <EntityContainer Name="CarRentalAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CarRecords" EntityType="CarRentalAppModel.CarRecord" />
           <EntitySet Name="CarRentalRecords" EntityType="CarRentalAppModel.CarRentalRecord" />
+          <EntitySet Name="Users" EntityType="CarRentalAppModel.User" />
           <AssociationSet Name="FK_CarRentalRecord_CarRecord" Association="CarRentalAppModel.FK_CarRentalRecord_CarRecord">
             <End Role="CarRecord" EntitySet="CarRecords" />
             <End Role="CarRentalRecord" EntitySet="CarRentalRecords" />
@@ -87,6 +97,14 @@
           <Property Name="CarID" Type="Int32" />
           <NavigationProperty Name="CarRecord" Relationship="CarRentalAppModel.FK_CarRentalRecord_CarRecord" FromRole="CarRentalRecord" ToRole="CarRecord" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_CarRentalRecord_CarRecord">
           <End Type="CarRentalAppModel.CarRecord" Role="CarRecord" Multiplicity="0..1" />
           <End Type="CarRentalAppModel.CarRentalRecord" Role="CarRentalRecord" Multiplicity="*" />
@@ -99,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -127,6 +145,15 @@
                 <ScalarProperty Name="DateToReturn" ColumnName="DateToReturn" />
                 <ScalarProperty Name="DateRented" ColumnName="DateRented" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CarRentalAppModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -13,9 +13,17 @@ namespace CarRentalDesktopApp
 {
     public partial class MainWindow : Form
     {
+        private Login _loginWindow;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(Login loginWindow)
+        {
+            InitializeComponent();
+            _loginWindow = loginWindow;
         }
 
         private void checkoutCarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,6 +44,11 @@ namespace CarRentalDesktopApp
                 checkinRentalForm.MdiParent = this;
                 checkinRentalForm.Show();
             }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _loginWindow.Close();
         }
     }
 }

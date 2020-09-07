@@ -7,6 +7,7 @@
       <Diagram DiagramId="b6f74263ea0842dfb2563996325aae3a" Name="Diagram1">
         <EntityTypeShape EntityType="CarRentalAppModel.CarRecord" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="CarRentalAppModel.CarRentalRecord" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CarRentalAppModel.User" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="CarRentalAppModel.FK_CarRentalRecord_CarRecord" />
       </Diagram>
     </edmx:Diagrams>

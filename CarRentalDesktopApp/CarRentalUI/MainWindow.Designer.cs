@@ -80,14 +80,14 @@
             // checkoutCarToolStripMenuItem
             // 
             this.checkoutCarToolStripMenuItem.Name = "checkoutCarToolStripMenuItem";
-            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.checkoutCarToolStripMenuItem.Text = "Checkout Car";
             this.checkoutCarToolStripMenuItem.Click += new System.EventHandler(this.checkoutCarToolStripMenuItem_Click);
             // 
             // checkinCarToolStripMenuItem
             // 
             this.checkinCarToolStripMenuItem.Name = "checkinCarToolStripMenuItem";
-            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.checkinCarToolStripMenuItem.Text = "Check-in Car";
             this.checkinCarToolStripMenuItem.Click += new System.EventHandler(this.checkinCarToolStripMenuItem_Click);
             // 
@@ -104,6 +104,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Car Rental Management System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.menuStripMainWindow.ResumeLayout(false);
             this.menuStripMainWindow.PerformLayout();
             this.ResumeLayout(false);
