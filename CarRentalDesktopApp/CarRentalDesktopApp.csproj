@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,14 +54,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="CarRentalLibrary\CarRecord.cs">
+      <DependentUpon>CarRentalModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalLibrary\CarRentalModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarRentalModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalLibrary\CarRentalModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarRentalModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalLibrary\CarRentalModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarRentalModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalLibrary\CarRentalRecord.cs">
+      <DependentUpon>CarRentalModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalLibrary\ViewModels\CarViewModel.cs" />
+    <Compile Include="CarRentalLibrary\ViewModels\CustomerViewModel.cs" />
+    <Compile Include="CarRentalUI\CheckinRental.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CarRentalUI\CheckinRental.Designer.cs">
+      <DependentUpon>CheckinRental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalUI\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarRentalUI\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarRentalUI\CheckoutRental.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarRentalUI\CheckoutRental.Designer.cs">
+      <DependentUpon>CheckoutRental.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CarRentalUI\CheckinRental.resx">
+      <DependentUpon>CheckinRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarRentalUI\CheckoutRental.resx">
+      <DependentUpon>CheckoutRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarRentalUI\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +115,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="CarRentalLibrary\CarRentalModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CarRentalModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CarRentalLibrary\CarRentalModels.edmx.diagram">
+      <DependentUpon>CarRentalModels.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,6 +135,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="CarRentalLibrary\CarRentalModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CarRentalModels.Context.cs</LastGenOutput>
+      <DependentUpon>CarRentalModels.edmx</DependentUpon>
+    </Content>
+    <Content Include="CarRentalLibrary\CarRentalModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarRentalModels.edmx</DependentUpon>
+      <LastGenOutput>CarRentalModels.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
