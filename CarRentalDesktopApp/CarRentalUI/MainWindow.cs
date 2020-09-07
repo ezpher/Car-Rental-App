@@ -20,16 +20,22 @@ namespace CarRentalDesktopApp
 
         private void checkoutCarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CheckoutRental checkoutRentalForm = new CheckoutRental();
-            checkoutRentalForm.MdiParent = this;
-            checkoutRentalForm.Show();
+            if (!Utils.FormIsOpen("CheckoutRental"))
+            {
+                CheckoutRental checkoutRentalForm = new CheckoutRental();
+                checkoutRentalForm.MdiParent = this;
+                checkoutRentalForm.Show();
+            }
         }
 
         private void checkinCarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CheckinRental checkinRentalForm = new CheckinRental();
-            checkinRentalForm.MdiParent = this;
-            checkinRentalForm.Show();
+            if (!Utils.FormIsOpen("CheckinRental"))
+            {
+                CheckinRental checkinRentalForm = new CheckinRental();
+                checkinRentalForm.MdiParent = this;
+                checkinRentalForm.Show();
+            }
         }
     }
 }
