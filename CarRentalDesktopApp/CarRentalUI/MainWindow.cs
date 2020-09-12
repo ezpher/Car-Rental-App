@@ -46,6 +46,16 @@ namespace CarRentalDesktopApp
             }
         }
 
+        private void manageCarsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!Utils.FormIsOpen("ManageCars"))
+            {
+                ManageCars managerCarsForm = new ManageCars();
+                managerCarsForm.MdiParent = this;
+                managerCarsForm.Show();
+            }
+        }
+
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             _loginWindow.Close();

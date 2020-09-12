@@ -34,6 +34,8 @@
             this.manageRentalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkoutCarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkinCarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageCarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageCarsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMainWindow.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +63,8 @@
             // 
             this.menuStripMainWindow.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStripMainWindow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageRentalsToolStripMenuItem});
+            this.manageRentalsToolStripMenuItem,
+            this.manageCarsToolStripMenuItem});
             this.menuStripMainWindow.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainWindow.Name = "menuStripMainWindow";
             this.menuStripMainWindow.Size = new System.Drawing.Size(979, 24);
@@ -80,16 +83,31 @@
             // checkoutCarToolStripMenuItem
             // 
             this.checkoutCarToolStripMenuItem.Name = "checkoutCarToolStripMenuItem";
-            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkoutCarToolStripMenuItem.Text = "Checkout Car";
             this.checkoutCarToolStripMenuItem.Click += new System.EventHandler(this.checkoutCarToolStripMenuItem_Click);
             // 
             // checkinCarToolStripMenuItem
             // 
             this.checkinCarToolStripMenuItem.Name = "checkinCarToolStripMenuItem";
-            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkinCarToolStripMenuItem.Text = "Check-in Car";
             this.checkinCarToolStripMenuItem.Click += new System.EventHandler(this.checkinCarToolStripMenuItem_Click);
+            // 
+            // manageCarsToolStripMenuItem
+            // 
+            this.manageCarsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageCarsToolStripMenuItem1});
+            this.manageCarsToolStripMenuItem.Name = "manageCarsToolStripMenuItem";
+            this.manageCarsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.manageCarsToolStripMenuItem.Text = "Manage Cars";
+            // 
+            // manageCarsToolStripMenuItem1
+            // 
+            this.manageCarsToolStripMenuItem1.Name = "manageCarsToolStripMenuItem1";
+            this.manageCarsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.manageCarsToolStripMenuItem1.Text = "Manage Cars";
+            this.manageCarsToolStripMenuItem1.Click += new System.EventHandler(this.manageCarsToolStripMenuItem1_Click);
             // 
             // MainWindow
             // 
@@ -119,6 +137,8 @@
         private System.Windows.Forms.ToolStripMenuItem manageRentalsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkoutCarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkinCarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageCarsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageCarsToolStripMenuItem1;
     }
 }
 
