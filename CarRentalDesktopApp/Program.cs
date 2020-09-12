@@ -17,7 +17,7 @@ namespace CarRentalDesktopApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow()); //new Login()
+            Application.Run(new Login());
         }
     }
 }

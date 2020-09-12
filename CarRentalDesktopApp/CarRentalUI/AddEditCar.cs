@@ -17,15 +17,18 @@ namespace CarRentalDesktopApp.CarRentalUI
     {
         private readonly bool isEdit;
         private readonly ManageCarViewModel manageCarVM;
+        private readonly ManageCars manageCarsForm;
 
         public AddEditCar()
         {
             InitializeComponent();
         }
 
-        public AddEditCar(bool isEdit, ManageCarViewModel manageCarVM = null)
+        public AddEditCar(bool isEdit, ManageCarViewModel manageCarVM = null, ManageCars manageCarsForm = null)
         {
             this.isEdit = isEdit;
+            this.manageCarsForm = manageCarsForm;
+
             InitializeComponent();
 
             if (this.isEdit)
@@ -188,6 +191,10 @@ namespace CarRentalDesktopApp.CarRentalUI
                     }
 
                     // refresh parent form grid view i.e. list of car records in manage cars form
+                    if (Utils.FormIsOpen("ManageCars"))
+                    {
+                        manageCarsForm.populateGrid();
+                    }
                 }
             }
             catch (Exception ex)

@@ -20,38 +20,43 @@ namespace CarRentalDesktopApp.CarRentalUI
             InitializeComponent();
         }
 
+        public void populateGrid()
+        {
+            // 1. set up sql connection to db (Add System.Configuration reference to winforms project and use configuration manager) to retrieve connection string from app config file
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CarRentalDb"].ConnectionString);
+
+            // 2. set up data adapter for retrieving data from db using stored proc 
+            SqlDataAdapter da = new SqlDataAdapter("[dbo].[SP_GetCarRecords]", conn);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            // 3. fill dataset with retrieved data, and assign table name i.e. Cars (opening and closing of connection automatically handled by fill method of data adapter unlike sqlCommand object)
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Cars");
+
+            // Project each row of the table to a ManageCarViewModel; use AsEnumerable to enable working with linq
+            IEnumerable<ManageCarViewModel> cars = ds.Tables["Cars"]
+                .AsEnumerable()
+                .Select(c => new ManageCarViewModel
+                {
+                    ID = Convert.ToInt32(c["ID"]),
+                    Make = c["Make"].ToString(),
+                    Model = c["Model"].ToString(),
+                    Year = c["Year"].ToString(),
+                    LicensePlate = c["LicensePlate"].ToString(),
+                    VIN = c["VIN"].ToString()
+
+                }).ToList();
+
+            dataGridViewManageCars.DataSource = cars;
+            dataGridViewManageCars.Columns["LicensePlate"].HeaderText = "License Plate";
+            dataGridViewManageCars.Columns["ID"].Visible = false;
+        }
+
         private void ManageCars_Load(object sender, EventArgs e)
         {
             try
             {
-                // 1. set up sql connection to db (Add System.Configuration reference to winforms project and use configuration manager) to retrieve connection string from app config file
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CarRentalDb"].ConnectionString);
-
-                // 2. set up data adapter for retrieving data from db using stored proc 
-                SqlDataAdapter da = new SqlDataAdapter("[dbo].[SP_GetCarRecords]", conn);
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-                // 3. fill dataset with retrieved data, and assign table name i.e. Cars (opening and closing of connection automatically handled by fill method of data adapter unlike sqlCommand object)
-                DataSet ds = new DataSet();
-                da.Fill(ds, "Cars");
-
-                // Project each row of the table to a ManageCarViewModel; use AsEnumerable to enable working with linq
-                IEnumerable<ManageCarViewModel> cars = ds.Tables["Cars"]
-                    .AsEnumerable()
-                    .Select(c => new ManageCarViewModel
-                    {
-                        ID = Convert.ToInt32(c["ID"]),
-                        Make = c["Make"].ToString(),
-                        Model = c["Model"].ToString(),
-                        Year = c["Year"].ToString(),
-                        LicensePlate = c["LicensePlate"].ToString(),
-                        VIN = c["VIN"].ToString()
-
-                    }).ToList();
-
-                dataGridViewManageCars.DataSource = cars;
-                dataGridViewManageCars.Columns["LicensePlate"].HeaderText = "License Plate";
-                dataGridViewManageCars.Columns["ID"].Visible = false;
+                populateGrid();
             }
             catch (Exception ex)
             {
@@ -63,7 +68,7 @@ namespace CarRentalDesktopApp.CarRentalUI
         {
             if (!Utils.FormIsOpen("AddEditCar"))
             {
-                AddEditCar addEditCarForm = new AddEditCar(isEdit: false);
+                AddEditCar addEditCarForm = new AddEditCar(isEdit: false, manageCarsForm: this);
                 addEditCarForm.MdiParent = this.MdiParent;
                 addEditCarForm.Show();
             }
@@ -99,7 +104,7 @@ namespace CarRentalDesktopApp.CarRentalUI
                     LicensePlate = licensePlate,
                 };
 
-                AddEditCar addEditCarForm = new AddEditCar(isEdit: true, manageCarVM: manageCarVM);
+                AddEditCar addEditCarForm = new AddEditCar(isEdit: true, manageCarVM: manageCarVM, manageCarsForm: this);
                 addEditCarForm.MdiParent = this.MdiParent;
                 addEditCarForm.Show();
             }
@@ -152,7 +157,12 @@ namespace CarRentalDesktopApp.CarRentalUI
                     // Retrieve return parameter value
                     int rowCount = (int)da.DeleteCommand.Parameters["@RowCount"].Value;
 
+                    // refresh grid
+                    populateGrid();
+
                     MessageBox.Show($"{rowCount} Car: {make} {model} {year} has been successfully removed");
+
+
                 }
             }
             catch (Exception ex)
