@@ -42,7 +42,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(178, 282);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(96, 43);
-            this.buttonLogin.TabIndex = 13;
+            this.buttonLogin.TabIndex = 15;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -54,6 +54,7 @@
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(242, 22);
             this.textBoxUserName.TabIndex = 12;
+            this.textBoxUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUserName_KeyPress);
             // 
             // labelUserName
             // 
@@ -82,7 +83,7 @@
             this.labelPassword.Location = new System.Drawing.Point(70, 214);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(82, 20);
-            this.labelPassword.TabIndex = 14;
+            this.labelPassword.TabIndex = 13;
             this.labelPassword.Text = "Password:";
             // 
             // textBoxPassword
@@ -92,7 +93,8 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(242, 22);
-            this.textBoxPassword.TabIndex = 15;
+            this.textBoxPassword.TabIndex = 14;
+            this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPassword_KeyPress);
             // 
             // Login
             // 

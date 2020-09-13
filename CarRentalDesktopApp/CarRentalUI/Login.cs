@@ -64,7 +64,23 @@ namespace CarRentalDesktopApp.CarRentalUI
 
 
 
-            
+
+        }
+
+        private void textBoxUserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
