@@ -193,7 +193,7 @@ namespace CarRentalDesktopApp.CarRentalUI
                     // refresh parent form grid view i.e. list of car records in manage cars form
                     if (Utils.FormIsOpen("ManageCars"))
                     {
-                        manageCarsForm.populateGrid();
+                        manageCarsForm.PopulateManageCarsGrid();
                     }
                 }
             }

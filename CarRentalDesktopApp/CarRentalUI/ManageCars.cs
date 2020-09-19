@@ -20,7 +20,7 @@ namespace CarRentalDesktopApp.CarRentalUI
             InitializeComponent();
         }
 
-        public void populateGrid()
+        public void PopulateManageCarsGrid()
         {
             // 1. set up sql connection to db (Add System.Configuration reference to winforms project and use configuration manager) to retrieve connection string from app config file
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CarRentalDb"].ConnectionString);
@@ -56,7 +56,7 @@ namespace CarRentalDesktopApp.CarRentalUI
         {
             try
             {
-                populateGrid();
+                PopulateManageCarsGrid();
             }
             catch (Exception ex)
             {
@@ -158,7 +158,7 @@ namespace CarRentalDesktopApp.CarRentalUI
                     int rowCount = (int)da.DeleteCommand.Parameters["@RowCount"].Value;
 
                     // refresh grid
-                    populateGrid();
+                    PopulateManageCarsGrid();
 
                     MessageBox.Show($"{rowCount} Car: {make} {model} {year} has been successfully removed");
 

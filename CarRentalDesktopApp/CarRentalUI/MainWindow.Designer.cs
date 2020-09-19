@@ -36,7 +36,12 @@
             this.checkinCarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageCarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageCarsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStripMainWindow = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelLoginUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMainWindow.SuspendLayout();
+            this.statusStripMainWindow.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainWindowTitle
@@ -64,7 +69,8 @@
             this.menuStripMainWindow.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStripMainWindow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageRentalsToolStripMenuItem,
-            this.manageCarsToolStripMenuItem});
+            this.manageCarsToolStripMenuItem,
+            this.AdminToolStripMenuItem});
             this.menuStripMainWindow.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainWindow.Name = "menuStripMainWindow";
             this.menuStripMainWindow.Size = new System.Drawing.Size(979, 24);
@@ -83,14 +89,14 @@
             // checkoutCarToolStripMenuItem
             // 
             this.checkoutCarToolStripMenuItem.Name = "checkoutCarToolStripMenuItem";
-            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkoutCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.checkoutCarToolStripMenuItem.Text = "Checkout Car";
             this.checkoutCarToolStripMenuItem.Click += new System.EventHandler(this.checkoutCarToolStripMenuItem_Click);
             // 
             // checkinCarToolStripMenuItem
             // 
             this.checkinCarToolStripMenuItem.Name = "checkinCarToolStripMenuItem";
-            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkinCarToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.checkinCarToolStripMenuItem.Text = "Check-in Car";
             this.checkinCarToolStripMenuItem.Click += new System.EventHandler(this.checkinCarToolStripMenuItem_Click);
             // 
@@ -109,11 +115,43 @@
             this.manageCarsToolStripMenuItem1.Text = "Manage Cars";
             this.manageCarsToolStripMenuItem1.Click += new System.EventHandler(this.manageCarsToolStripMenuItem1_Click);
             // 
+            // AdminToolStripMenuItem
+            // 
+            this.AdminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageUsersToolStripMenuItem});
+            this.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem";
+            this.AdminToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.AdminToolStripMenuItem.Text = "Administration";
+            // 
+            // manageUsersToolStripMenuItem
+            // 
+            this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
+            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageUsersToolStripMenuItem.Text = "Manage Users";
+            this.manageUsersToolStripMenuItem.Click += new System.EventHandler(this.manageUsersToolStripMenuItem_Click);
+            // 
+            // statusStripMainWindow
+            // 
+            this.statusStripMainWindow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelLoginUser});
+            this.statusStripMainWindow.Location = new System.Drawing.Point(0, 428);
+            this.statusStripMainWindow.Name = "statusStripMainWindow";
+            this.statusStripMainWindow.Size = new System.Drawing.Size(979, 22);
+            this.statusStripMainWindow.TabIndex = 6;
+            this.statusStripMainWindow.Text = "statusStripMainWindow";
+            // 
+            // toolStripStatusLabelLoginUser
+            // 
+            this.toolStripStatusLabelLoginUser.Name = "toolStripStatusLabelLoginUser";
+            this.toolStripStatusLabelLoginUser.Size = new System.Drawing.Size(165, 17);
+            this.toolStripStatusLabelLoginUser.Text = "toolStripStatusLabelLoginUser";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 450);
+            this.Controls.Add(this.statusStripMainWindow);
             this.Controls.Add(this.mainWindowTitle);
             this.Controls.Add(this.panelMainWindowTitle);
             this.Controls.Add(this.menuStripMainWindow);
@@ -123,8 +161,11 @@
             this.Text = "Car Rental Management System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStripMainWindow.ResumeLayout(false);
             this.menuStripMainWindow.PerformLayout();
+            this.statusStripMainWindow.ResumeLayout(false);
+            this.statusStripMainWindow.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,6 +180,10 @@
         private System.Windows.Forms.ToolStripMenuItem checkinCarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageCarsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageCarsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem AdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStripMainWindow;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelLoginUser;
     }
 }
 

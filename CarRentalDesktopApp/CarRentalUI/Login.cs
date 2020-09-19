@@ -26,45 +26,31 @@ namespace CarRentalDesktopApp.CarRentalUI
         {
             string userName = textBoxUserName.Text.Trim();
             string password = textBoxPassword.Text;
+            string hashedPassword = string.Empty;
 
-            using (SHA256 sha256Hash = SHA256.Create())
+            hashedPassword = Utils.HashPassword(password);
+
+            //Check for matching username and password and isActive Status
+            User user = _db.Users.FirstOrDefault(q => q.UserName == userName && q.Password == hashedPassword && q.IsActive == true);
+
+            if (user == null)
             {
-                // Convert the input string to a byte array and compute the hash.
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-
-                // Create a new Stringbuilder to collect the bytes and create a string
-                StringBuilder builder = new StringBuilder();
-
-                // Loop through each byte of the hashed data and format each one as a hexadecimal string.
-                for (int i = 0; i < bytes.Length; i++)
+                MessageBox.Show("Credentials entered are not valid", "Invalid Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else 
+            {
+                // Check if retrieved user's password is default password
+                if (user.Password == Utils.HashPassword())
                 {
-                    builder.Append(bytes[i].ToString("x2"));
+                    ResetPasswordOnLogin resetPWForm = new ResetPasswordOnLogin(user);
+                    resetPWForm.ShowDialog(); // showDialog does not allow user to click anywhere until action is resolved in the dialog box i.e. modal-style box
                 }
 
-                string hashedPassword = builder.ToString();
-
-
-                //Check for matching username and password
-                var user = _db.Users.FirstOrDefault(q => q.UserName == userName && q.Password == hashedPassword);
-
-                if (user == null)
-                {
-                    MessageBox.Show("Credentials entered are not valid", "Invalid Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MainWindow mainWindow = new MainWindow(this);
-                    mainWindow.Show();
-                    this.Hide();
-
-                }
+                MainWindow mainWindow = new MainWindow(this, user);
+                mainWindow.Show();
+                this.Hide();
 
             }
-
-
-
-
         }
 
         private void textBoxUserName_KeyPress(object sender, KeyPressEventArgs e)
